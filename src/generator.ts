@@ -37,6 +37,17 @@ function addSafeImport(
         });
     }
 }
+function checkDefinition(paramDefinition: Definition) {
+    if (paramDefinition) {
+        return paramDefinition.name;
+    }
+
+    if (paramDefinition === null) {
+        return "null";
+    }
+
+    return "{}";
+}
 
 const incorrectPropNameChars = [" ", "-", "."];
 /**
@@ -61,7 +72,7 @@ function createProperty(
         name: sanitizePropName(name),
         docs: [doc],
         hasQuestionToken: true,
-        type: isArray ? `Array<${type}>` : type,
+        type: isArray ? `Array<${type}> | ${type}` : type,
     };
 }
 
@@ -74,11 +85,19 @@ function generateDefinitionFile(
     options: GeneratorOptions
 ): void {
     const defName = definition.name;
-    const defFilePath = path.join(defDir, `${defName}.ts`);
-    const defFile = project.createSourceFile(defFilePath, "", {
-        overwrite: true,
-    });
+    // const defFilePath = path.join(defDir, `${defName}.ts`);
+    // const defFile = project.createSourceFile(defFilePath, "", {
+    //     overwrite: true,
+    // });
 
+    const defFilePath = path.join(defDir, `definitions.ts`);
+    let defFile = project.getSourceFile(defFilePath);
+
+    if (!defFile) {
+        defFile = project.createSourceFile(defFilePath, "", {
+            overwrite: true,
+        });
+    }
     generated.push(definition);
 
     const definitionImports: OptionalKind<ImportDeclarationStructure>[] = [];
@@ -104,9 +123,9 @@ function generateDefinitionFile(
                 generateDefinitionFile(project, prop.ref, defDir, [...stack, prop.ref.name], generated, options);
             }
             // If a property is of the same type as its parent type, don't add import
-            if (prop.ref.name !== definition.name) {
-                addSafeImport(definitionImports, `./${prop.ref.name}`, prop.ref.name);
-            }
+            // if (prop.ref.name !== definition.name) {
+            //     addSafeImport(definitionImports, `./${prop.ref.name}`, prop.ref.name);
+            // }
             definitionProperties.push(createProperty(prop.name, prop.ref.name, prop.sourceName, prop.isArray));
         }
     }
@@ -217,7 +236,7 @@ export async function generate(
                     parameters: [
                         {
                             name: camelcase(method.paramName),
-                            type: method.paramDefinition ? method.paramDefinition.name : "{}",
+                            type: checkDefinition(method.paramDefinition),
                         },
                         {
                             name: "callback",
@@ -297,7 +316,7 @@ export async function generate(
                     parameters: [
                         {
                             name: camelcase(method.paramName),
-                            type: method.paramDefinition ? method.paramDefinition.name : "{}",
+                            type: checkDefinition(method.paramDefinition),
                         },
                     ],
                     returnType: `Promise<[result: ${

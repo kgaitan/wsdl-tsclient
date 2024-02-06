@@ -1,5 +1,6 @@
-import { parseWsdl } from "./src/parser";
+import { parseAndGenerate, ModelPropertyNaming } from "./src";
 
-(async function () {
-    const d = await parseWsdl("./test/resources/strict/EVacSyncService_SPClient.wsdl", { modelNamePreffix: "", modelNameSuffix: "" });
-})();
+parseAndGenerate("./soap_files/FLIGHTS_JAVASCRIPT_TST_1.2/FLIGHTS_JAVASCRIPT_TST_1.2_Technical.wsdl", "./generated/", {
+    modelNamePreffix: "FMPTBS_RS_",
+    modelPropertyNaming: ModelPropertyNaming.camelCase,
+});

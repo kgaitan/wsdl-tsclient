@@ -80,12 +80,16 @@ export interface Options {
      * @default 32
      */
     maxStackWarn: number;
+    modelNamePreffix: string;
+    modelNameSuffix: string;
 }
 
 const defaultOptions: Options = {
-    caseInsensitiveNames: false,
+    caseInsensitiveNames: true,
     maxStack: 64,
     maxStackWarn: 32,
+    modelNamePreffix: "",
+    modelNameSuffix: "",
 };
 
 export class ParsedWsdl {
@@ -129,14 +133,18 @@ export class ParsedWsdl {
         const definitionName = sanitizeFilename(defName);
         const isInSensitive = this._options.caseInsensitiveNames;
 
-        const defNameToCheck = isInSensitive ? definitionName.toLowerCase() : definitionName;
+        const defNameToCheck = isInSensitive
+            ? `${this._options.modelNamePreffix}${definitionName}`.toLowerCase()
+            : `${this._options.modelNamePreffix}${definitionName}`;
         if (
             !this.definitions.find((def) =>
                 isInSensitive ? def.name.toLowerCase() === defNameToCheck : def.name === defNameToCheck
             )
         ) {
+            // console.log('No collision');
             return definitionName;
         }
+
         for (let i = 1; i < this._options.maxStack; i++) {
             if (
                 !this.definitions.find((def) =>
