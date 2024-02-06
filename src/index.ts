@@ -10,6 +10,7 @@ export { parseWsdl } from "./parser";
 export enum ModelPropertyNaming {
     "camelCase" = "camelCase",
     "PascalCase" = "PascalCase",
+    "Default" = "Default",
 }
 export interface Options {
     /**
@@ -61,7 +62,7 @@ export const defaultOptions: Options = {
     modelNameSuffix: "",
     caseInsensitiveNames: false,
     maxRecursiveDefinitionName: 64,
-    modelPropertyNaming: null,
+    modelPropertyNaming: ModelPropertyNaming.Default,
     //
     verbose: false,
     quiet: false,
