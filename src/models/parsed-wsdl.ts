@@ -134,8 +134,11 @@ export class ParsedWsdl {
         const isInSensitive = this._options.caseInsensitiveNames;
 
         const defNameToCheck = isInSensitive
-            ? `${this._options.modelNamePreffix}${definitionName}`.toLowerCase()
-            : `${this._options.modelNamePreffix}${definitionName}`;
+            ? `${this._options.modelNamePreffix}${definitionName}${this._options.modelNameSuffix}`.toLowerCase()
+            : `${this._options.modelNamePreffix}${definitionName}${this._options.modelNameSuffix}`;
+
+        console.log(this.definitions);
+
         if (
             !this.definitions.find((def) =>
                 isInSensitive ? def.name.toLowerCase() === defNameToCheck : def.name === defNameToCheck
