@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wsdl.amadeus.com/Travel_Management_v1" xmlns:ama_2010_06_Travel_OfferPriceRQ_v1="http://xml.amadeus.com/2010/06/Travel_OfferPriceRQ_v1" xmlns:ama_2010_06_Travel_OfferPriceRS_v1="http://xml.amadeus.com/2010/06/Travel_OfferPriceRS_v1" xmlns:ama_2010_06_Travel_OrderCancelRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderCancelRQ_v1" xmlns:ama_2010_06_Travel_OrderCancelRS_v1="http://xml.amadeus.com/2010/06/Travel_OrderCancelRS_v1" xmlns:ama_2010_06_Travel_OrderChangeRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderChangeRQ_v1" xmlns:ama_2010_06_Travel_OrderViewRS_v1="http://xml.amadeus.com/2010/06/Travel_OrderViewRS_v1" xmlns:ama_2010_06_Travel_OrderCreateRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderCreateRQ_v1" xmlns:ama_2010_06_Travel_OrderPayRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderPayRQ_v1" xmlns:ama_2010_06_Travel_OrderReshopRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderReshopRQ_v1" xmlns:ama_2010_06_Travel_OrderReshopRS_v1="http://xml.amadeus.com/2010/06/Travel_OrderReshopRS_v1" xmlns:ama_2010_06_Travel_OrderRetrieveRQ_v1="http://xml.amadeus.com/2010/06/Travel_OrderRetrieveRQ_v1" xmlns:ama_2010_06_Travel_SeatAvailabilityRQ_v1="http://xml.amadeus.com/2010/06/Travel_SeatAvailabilityRQ_v1" xmlns:ama_2010_06_Travel_SeatAvailabilityRS_v1="http://xml.amadeus.com/2010/06/Travel_SeatAvailabilityRS_v1" xmlns:ama_2010_06_Travel_ServiceListRQ_v1="http://xml.amadeus.com/2010/06/Travel_ServiceListRQ_v1" xmlns:ama_2010_06_Travel_ServiceListRS_v1="http://xml.amadeus.com/2010/06/Travel_ServiceListRS_v1" targetNamespace="http://wsdl.amadeus.com/Travel_Management_v1" name="Travel_Management_1.12">
+  <wsdl:documentation>Version 1.12</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema>
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OfferPriceRQ_v1" schemaLocation="AMA/2019K/AMA_TravelOfferPriceRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OfferPriceRS_v1" schemaLocation="AMA/2019K/AMA_TravelOfferPriceRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderCancelRQ_v1" schemaLocation="AMA/2018J/AMA_TravelOrderCancelRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderCancelRS_v1" schemaLocation="AMA/2018J/AMA_TravelOrderCancelRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderChangeRQ_v1" schemaLocation="AMA/2022L/AMA_TravelOrderChangeRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderCreateRQ_v1" schemaLocation="AMA/2022L/AMA_TravelOrderCreateRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderPayRQ_v1" schemaLocation="AMA/2022L/AMA_TravelOrderPayRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderReshopRQ_v1" schemaLocation="AMA/2022T/AMA_TravelOrderReshopRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderReshopRS_v1" schemaLocation="AMA/2022T/AMA_TravelOrderReshopRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderRetrieveRQ_v1" schemaLocation="AMA/2022L/AMA_TravelOrderRetrieveRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_OrderViewRS_v1" schemaLocation="AMA/2022L/AMA_TravelOrderViewRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_SeatAvailabilityRQ_v1" schemaLocation="AMA/2018L/AMA_TravelSeatAvailabilityRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_SeatAvailabilityRS_v1" schemaLocation="AMA/2018L/AMA_TravelSeatAvailabilityRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_ServiceListRQ_v1" schemaLocation="AMA/2020D/AMA_TravelServiceListRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/Travel_ServiceListRS_v1" schemaLocation="AMA/2020D/AMA_TravelServiceListRS.xsd" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AMA_TravelOfferPriceRQ_1.002">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OfferPriceRQ_v1:AMA_TravelOfferPriceRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOfferPriceRS_1.002">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OfferPriceRS_v1:AMA_TravelOfferPriceRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderCancelRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderCancelRQ_v1:AMA_TravelOrderCancelRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderCancelRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderCancelRS_v1:AMA_TravelOrderCancelRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderChangeRQ_1.007">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderChangeRQ_v1:AMA_TravelOrderChangeRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderCreateRQ_1.006">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderCreateRQ_v1:AMA_TravelOrderCreateRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderPayRQ_1.006">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderPayRQ_v1:AMA_TravelOrderPayRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderReshopRQ_1.004">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderReshopRQ_v1:AMA_TravelOrderReshopRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderReshopRS_1.004">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderReshopRS_v1:AMA_TravelOrderReshopRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderRetrieveRQ_1.006">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderRetrieveRQ_v1:AMA_TravelOrderRetrieveRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelOrderViewRS_1.006">
+    <wsdl:part name="body" element="ama_2010_06_Travel_OrderViewRS_v1:AMA_TravelOrderViewRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelSeatAvailabilityRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_Travel_SeatAvailabilityRQ_v1:AMA_TravelSeatAvailabilityRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelSeatAvailabilityRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_Travel_SeatAvailabilityRS_v1:AMA_TravelSeatAvailabilityRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelServiceListRQ_1.001">
+    <wsdl:part name="body" element="ama_2010_06_Travel_ServiceListRQ_v1:AMA_TravelServiceListRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TravelServiceListRS_1.001">
+    <wsdl:part name="body" element="ama_2010_06_Travel_ServiceListRS_v1:AMA_TravelServiceListRS" />
+  </wsdl:message>
+  <wsdl:portType name="Travel_Management_PT">
+    <wsdl:operation name="Travel_OfferPrice">
+      <wsdl:documentation>Version 1.2</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOfferPriceRQ_1.002" />
+      <wsdl:output message="tns:AMA_TravelOfferPriceRS_1.002" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderCancel">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderCancelRQ_1.000" />
+      <wsdl:output message="tns:AMA_TravelOrderCancelRS_1.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderChange">
+      <wsdl:documentation>Version 1.7</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderChangeRQ_1.007" />
+      <wsdl:output message="tns:AMA_TravelOrderViewRS_1.006" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderCreate">
+      <wsdl:documentation>Version 1.6</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderCreateRQ_1.006" />
+      <wsdl:output message="tns:AMA_TravelOrderViewRS_1.006" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderPay">
+      <wsdl:documentation>Version 1.6</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderPayRQ_1.006" />
+      <wsdl:output message="tns:AMA_TravelOrderViewRS_1.006" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderReshop">
+      <wsdl:documentation>Version 1.4</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderReshopRQ_1.004" />
+      <wsdl:output message="tns:AMA_TravelOrderReshopRS_1.004" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_OrderRetrieve">
+      <wsdl:documentation>Version 1.6</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelOrderRetrieveRQ_1.006" />
+      <wsdl:output message="tns:AMA_TravelOrderViewRS_1.006" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_SeatAvailability">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelSeatAvailabilityRQ_1.000" />
+      <wsdl:output message="tns:AMA_TravelSeatAvailabilityRS_1.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Travel_ServiceList">
+      <wsdl:documentation>Version 1.1</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TravelServiceListRQ_1.001" />
+      <wsdl:output message="tns:AMA_TravelServiceListRS_1.001" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationComponentCommonTypes.xsd" />
+  <!--*************************************************************************-->
+  <!-- Declaration of QtFareComponent type that includes the real data (group) -->
+  <!--*************************************************************************-->
+  <xs:complexType name="QtServiceComponentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is the Quotation Fare Component Type declaration. Quotation Fare
+                Component is a quotation type to store pricing data relative to a group of Coupons.
+                It includes, like all others quotations types, Quotation Element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QtComponentType">
+        <xs:sequence>
+          <!-- We can have up to two Pricing Context (Original and Current) -->
+          <xs:element name="PricingInfo" type="ComponentPricingInfoType" minOccurs="0" maxOccurs="2" />
+          <!-- And up to two Ticketing Context (Original and Current) -->
+          <xs:element name="Ticketing" type="TicketingInfoType" minOccurs="0" maxOccurs="2" />
+        </xs:sequence>
+      </xs:extension>
+      <!-- Extends Quotation Element -->
+    </xs:complexContent>
+  </xs:complexType>
+  <!--*******************************************************************-->
+  <!--    Uncomment this to be able to use auto-instance generation tools
+    <xs:element name="ListQtServiceComponent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="QtServiceComponent" type="QtServiceComponentType" minOccurs="1" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    -->
+</xs:schema>
+

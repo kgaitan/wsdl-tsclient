@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationElementCommonTypes.xsd" />
+  <!--*********************************************************************-->
+  <!-- Declaration of QtItiCoupon type that includes the real data (group) -->
+  <!--*********************************************************************-->
+  <xs:complexType name="QtItineraryServiceType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation Itinerary Coupon Type declaration. Quotation Itinerary Coupon
+                is a quotation type to store specific data at Coupon level for TST representation.
+                This means that any data added at this level is not accessible to Document Coupon,
+                avoiding useless data at unwanted level. It includes, Quotation Coupon Element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QtElementType">
+        <xs:sequence>
+          <xs:element name="PricingInfo" type="PricingInfoType" minOccurs="0" maxOccurs="2" />
+        </xs:sequence>
+      </xs:extension>
+      <!-- We currently have no specific data at this level. This may come in the future. -->
+    </xs:complexContent>
+  </xs:complexType>
+  <!--*******************************************************************-->
+  <!--    Uncomment this to be able to use auto-instance generation
+    <xs:element name="ListQtItiService">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="QtItiService" type="QtItineraryServiceType" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+     -->
+</xs:schema>
+

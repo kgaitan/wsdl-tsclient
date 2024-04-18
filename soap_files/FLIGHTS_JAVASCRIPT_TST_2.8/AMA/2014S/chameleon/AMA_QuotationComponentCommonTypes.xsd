@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<!-- Edited with Notepad++ (true men use no tools) by Giuliano Quarta & Simon Ruiz - Approved by Mehdi Lefouili -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationElementCommonTypes.xsd" />
+  <!--*******************************************************************-->
+  <!-- Declaration of QtGeneric type that includes the real data (group) -->
+  <!--*******************************************************************-->
+  <xs:complexType name="QtComponentType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation Generic Type declaration. Quotation Generic is
+                a quotation type to store shared data for Itinerary and Document (resp. used for TST and
+                TSM representation). This means that any data added at this level is accessible to
+                Iti and Doc, avoiding data specification duplication between those 2 types. It
+                includes, like all others quotations types, Quotation Element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QtElementType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ComponentPricingInfoType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation Generic Pricing context Type declaration.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PricingInfoType">
+        <xs:sequence>
+          <xs:element name="Location" type="TypedLocationType" minOccurs="0" maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>Location information</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <!-- Those two has been merged in Location : they now have a "Type" attribute (From or To)
+                        <xs:element name="Origin"                           type="CityCodeType"            minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="Destination"                      type="CityCodeType"            minOccurs="0" maxOccurs="1"/>-->
+        </xs:sequence>
+        <xs:attribute name="Seasonality" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Define the Seasonality (e.g. High, Low...)</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+      <!-- Added attributes -->
+    </xs:complexContent>
+  </xs:complexType>
+  <!--*******************************************************************-->
+</xs:schema>
+

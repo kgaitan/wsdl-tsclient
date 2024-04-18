@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationCommonTypes.xsd" />
+  <!--****************************************************************************-->
+  <!-- Declaration of QtElementGroup : real data of Element quotation (top level) -->
+  <!--****************************************************************************-->
+  <xs:complexType name="QtElementType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is the top of quotation element hierarchy: all others quotations elements must include this group.
+				This involves that every data specified in this group are common to every single quotation; this enables evolution and addition of generic data management.
+				Currently, it contains:
+				- A list of Fares,
+				- A list of Taxes,
+				- A Quotation Type</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PriceComponentType">
+        <xs:sequence>
+          <xs:element name="QuotationType" type="FullQuotationType_Type" minOccurs="0" />
+          <!-- New data for SWA: points "amounts"  -->
+          <xs:element name="Point" type="PointType" minOccurs="0" maxOccurs="999">
+            <xs:annotation>
+              <xs:documentation>Define points and miles information</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--****************************************************************************-->
+  <xs:simpleType name="EnumQuotationTypeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Quotation type as following:
+				kSBR_QT_Default = 0,
+				kSBR_QT_Generic,
+				kSBR_QT_Pricing_Record,
+				kSBR_QT_Document_Pricing_Record,
+				kSBR_QT_Itinerary_Pricing_Record,
+				kSBR_QT_Itinerary, = 5
+				kSBR_QT_Atc,
+				kSBR_QT_Document,
+				kSBR_QT_Ob,
+				kSBR_QT_ObFees,
+				kSBR_QT_Coupon, = 10
+				kSBR_QT_Package,
+				kSBR_QT_Coupon_Document,
+				kSBR_QT_Coupon_Itinerary,
+				kSBR_QT_Markup,
+				kSBR_QT_Refund, = 15
+				kSBR_QT_ExtendedContents,
+				kSBR_QT_AddOn,
+				kSBR_QT_Unknown,
+				kSBR_QT_FareComponent = 19</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:nonNegativeInteger">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="19" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FullQuotationType_Type">
+    <xs:simpleContent>
+      <xs:extension base="EnumQuotationTypeType">
+        <xs:attribute name="Description" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Offer a 'human-readable' description of Quotations' SBM type. Possible values are:
+							"QT_DEFAULT" for basic untyped quotations,
+							"QT_GEN" for abstract Generics (Iti, Doc),
+							"QT_PR" for abstract Pricing Records (Package, ItiPR, DocPR etc...),
+							"QT_DOC_PR" for Document Pricing Records,
+							"QT_ITI_PR" for Itinerary Pricing Records,
+							"QT_ITI" for Itineraries,
+							"QT_ATC_PR" for ATC Pricing Records,
+							"QT_DOC" for Documents,
+							"QT_OBF_DET" for OBs,
+							"QT_OBF" for OB Fees,
+							"QT_CPN" for abstract Coupons (ItiCoupon, DocCoupons),
+							"QT_PCK" for Packages,
+							"QT_DOC_CPN" for Document Coupons,
+							"QT_ITI_CPN" for Itinerary Coupons,
+							"QT_MRK" for Mark-ups,
+							"QT_REF" for Refunds,
+							"QT_EXT_PR" for Extended Pricing Records,
+							"QT_ADN" for Add-ons,
+							"QT_UNKNOWN" for Unknowns,
+							"QT_FAR_COM" for Fare Components.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="QT_DEFAULT" />
+              <xs:enumeration value="QT_GEN" />
+              <xs:enumeration value="QT_PR" />
+              <xs:enumeration value="QT_DOC_PR" />
+              <xs:enumeration value="QT_ITI_PR" />
+              <xs:enumeration value="QT_ITI" />
+              <xs:enumeration value="QT_ATC_PR" />
+              <xs:enumeration value="QT_DOC" />
+              <xs:enumeration value="QT_OBF" />
+              <xs:enumeration value="QT_OBF_DET" />
+              <xs:enumeration value="QT_CPN" />
+              <xs:enumeration value="QT_PCK" />
+              <xs:enumeration value="QT_DOC_CPN" />
+              <xs:enumeration value="QT_ITI_CPN" />
+              <xs:enumeration value="QT_MRK" />
+              <xs:enumeration value="QT_REF" />
+              <xs:enumeration value="QT_EXT_PR" />
+              <xs:enumeration value="QT_ADN" />
+              <xs:enumeration value="QT_UNKNOWN" />
+              <xs:enumeration value="QT_FAR_COM" />
+              <xs:enumeration value="" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!--	Uncomment this to be able to use auto-instanciation tools
+	<xs:element name="QtElementImplementation" type="QtElement"/>-->
+</xs:schema>
+

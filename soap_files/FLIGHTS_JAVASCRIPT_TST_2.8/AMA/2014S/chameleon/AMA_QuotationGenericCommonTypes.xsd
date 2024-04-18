@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<!-- Edited with Notepad++ (true men use no tool) by Giuliano Quarta & Simon Ruiz - Approved by Mehdi Lefouili -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationElementCommonTypes.xsd" />
+  <!--*******************************************************************-->
+  <!-- Declaration of QtGeneric type that includes the real data (group) -->
+  <!--*******************************************************************-->
+  <xs:complexType name="QtGenericType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation Generic Type declaration. Quotation Generic is
+				a quotation type to store shared data for Itinerary and Document (resp. used for TST and
+				TSM representation). This means that any data added at this level is accessible to
+				Iti and Doc, avoiding data specification duplication between those 2 types. It
+				includes, like all others quotations types, Quotation Element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QtElementType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPricingInfoType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation Generic Pricing context Type declaration.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PricingInfoType">
+        <xs:sequence>
+          <!-- New data for SWA -->
+          <xs:element name="LoyaltyProgram" type="LoyaltyProgramType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Represent the Loyalty program used:
+- Promo Certificate,
+- Transitional Certificate, 
+- Companions Certificate, 
+- Miles and Cash, 
+- Award Pricing</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--*******************************************************************-->
+  <!-- Following data will be added later -->
+  <!--<xs:element name="FareType"				type="FareTypeType"/>
+												<xs:element name="FareType" type="FareTypeType"/>
+						<!-\-  Moved to Appended Context
+			<xs:element name="AppendedMessage"			type="xs:string"					minOccurs="0" maxOccurs="1"/>-\->
+						<xs:element name="IssueIndicator"			type="IssueIndicatorType"			minOccurs="0" maxOccurs="1"/>
+						
+						<xs:element name="Equiv"														minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Fare"			type="FareType"					minOccurs="0" maxOccurs="1"/>
+									<xs:element name="Currency"											minOccurs="0" maxOccurs="1">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="First" type="CurrencyType"			minOccurs="0" maxOccurs="1"/>
+												<xs:element name="Second" type="CurrencyType"			minOccurs="0" maxOccurs="1"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						
+						<!-\- This as been moved at Element level 
+			<xs:element name="Taxes"					type="TaxListType"					minOccurs="0" maxOccurs="1"/>	-\->
+						
+						<xs:element name="ManualNetFare"			type="FareType"					minOccurs="0" maxOccurs="1"/>
+						
+						<!-\- Bankers Selling Rates -\->
+						<xs:element name="BankerSellingRate"											minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="First"		type="BankerRateType"				minOccurs="0" maxOccurs="1"/>
+									<xs:element name="Second"		type="BankerRateType"				minOccurs="0" maxOccurs="1"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="FareCalc" 				type="FareCalcType"				minOccurs="0" maxOccurs="1"/>
+						
+						<xs:element name="Mileage"														minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Value" 		type="xs:integer"					minOccurs="0" maxOccurs="1"/>
+									<xs:element name="Breakdown" 	type="xs:string"					minOccurs="0" maxOccurs="1"/>
+								</xs:all>
+								<xs:attribute name="isModified" 	type="xs:boolean"					use="optional"/>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="Creation"														minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Entry"		type="xs:string"					minOccurs="0" maxOccurs="1"/>
+									<xs:element ref="DateTime"											minOccurs="0" maxOccurs="1"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="PricingOverride"												minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="DateTime"											minOccurs="0" maxOccurs="1"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="Modification"													minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="DateTime"											minOccurs="0" maxOccurs="1"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="TaxesStatus" 				type="TaxesStatusType"				minOccurs="0" maxOccurs="1"/>
+						<xs:element name="IRU"						type="IRUType"						minOccurs="0" maxOccurs="1"/>
+						<xs:element name="IsGlobalPrice"			type="xs:boolean"					minOccurs="0" maxOccurs="1"/>
+						<xs:element name="UpgradePoints"			type="xs:integer"					minOccurs="0" maxOccurs="1"/>
+						<xs:element name="InternationalInformation"	type="InterntationalIndicatorType"	minOccurs="0" maxOccurs="1"/>
+						<xs:element name="NonTaxableFare"			type="FareType"					minOccurs="0" maxOccurs="1"/>
+						<xs:element name="Blobs"					type="ItineraryBlobListType"		minOccurs="0" maxOccurs="1"/>-->
+</xs:schema>
+

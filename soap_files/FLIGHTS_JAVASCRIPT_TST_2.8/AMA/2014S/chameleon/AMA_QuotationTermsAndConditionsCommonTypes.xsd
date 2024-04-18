@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by ﻿AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ota_2011A="http://www.opentravel.org/OTA/2003/05/OTA2011A" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" xmlns:ns1="http://xml.amadeus.com/2010/06/TermsAndConditions_v2" elementFormDefault="qualified" attributeFormDefault="qualified" version="1.001" id="AMA2014S">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/QuotationTypes_v1" schemaLocation="../AMA_QuotationCommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2011A" schemaLocation="../../../OTA/2011A/OTA_Proxy.xsd" />
+  <xs:complexType name="TermsAndCondtionsType">
+    <xs:annotation>
+      <xs:documentation>This is used to store all conditions and applicable terms for one given product or one given package.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ModificationRule" type="ModificationRuleType" minOccurs="0" maxOccurs="99" />
+      <xs:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="99" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModificationRuleType">
+    <xs:sequence>
+      <xs:element name="Conditions" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="validity" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="start" type="ExtendedDateTimeType" minOccurs="0" />
+                  <xs:element name="end" type="ExtendedDateTimeType" minOccurs="0" />
+                </xs:sequence>
+                <xs:attribute name="duration" type="xs:duration" use="optional">
+                  <xs:annotation>
+                    <xs:documentation>This is used to determine the Validity Period after/before a date (e.g. -P2D meaning 2 days before a date). If both a start date and an end date are specified, then this "Duration" attribute should not be used.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ExceptionalEvents" minOccurs="0" maxOccurs="99">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="event" type="EventType" minOccurs="1" maxOccurs="99" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Terms" minOccurs="0">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>This is used to list all the Terms of the rule (e.g. Penalty).</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="Penalty" type="PenaltyType" minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="99" />
+    </xs:sequence>
+    <xs:attribute name="modification" type="RestrictedCategoryType" use="required">
+      <xs:annotation>
+        <xs:documentation>This defines what type of modification is concerned in this rule.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="circumstances" type="RestrictedCategoryListType" use="optional">
+      <xs:annotation>
+        <xs:documentation>This is normally used for air travel.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="EventType">
+    <xs:annotation>
+      <xs:documentation>Defines the events under which a rule can apply.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="element" type="EventElementType" use="optional" />
+    <xs:attribute name="status" type="EventStatusType" use="optional" />
+  </xs:complexType>
+  <xs:simpleType name="EventElementType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Traveller" />
+      <xs:enumeration value="FamilyOfTraveller" />
+      <xs:enumeration value="ParentOfTraveller" />
+      <xs:enumeration value="SpouseOfTraveller" />
+      <xs:enumeration value="ChildOfTraveller" />
+      <xs:enumeration value="Flight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EventStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Illness" />
+      <xs:enumeration value="Death" />
+      <xs:enumeration value="NoShowInFirstFlight" />
+      <xs:enumeration value="NoShowInSubsequentFlight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PenaltyType">
+    <xs:sequence>
+      <xs:element name="Price" type="qt:PriceType" minOccurs="0" maxOccurs="10">
+        <xs:annotation>
+          <xs:documentation>Only for Air Travel: The "Type" attribute in "PriceType" must be used to specify if the Penalty is for "ADV" or "BDV" or ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Tax" type="qt:TaxType" minOccurs="0" maxOccurs="10">
+        <xs:annotation>
+          <xs:documentation>Only for Air Travel: The "Type" attribute in "PriceType" must be used to specify if the Penalty is for "ADV" or "BDV" or ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Points" type="qt:PointType" minOccurs="0" maxOccurs="10">
+        <xs:annotation>
+          <xs:documentation>Penalty charges expressed in loyalty program unit, e.g. 100 MILES.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RetainedValue" minOccurs="0" maxOccurs="10">
+        <xs:annotation>
+          <xs:documentation>Charges that apply without necessarily getting a benefit or service, e.g. 1 NIGHT.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:nonNegativeInteger">
+              <xs:attribute name="Type" type="xs:string" use="optional" />
+              <xs:attribute name="Unit" use="required">
+                <xs:annotation>
+                  <xs:documentation>Unit e.g. Night.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Night" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CategoryListType">
+    <xs:list itemType="RestrictedSubCategoryType" />
+  </xs:simpleType>
+  <xs:simpleType name="RestrictedCategoryListType">
+    <xs:restriction base="CategoryListType">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphabeticDateType">
+    <xs:annotation>
+      <xs:documentation>This type is used to tell a Date expressed in an alphabetic form. Allowed values are enumerated (e.g. ArrivalDate).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ArrivalDate" />
+      <xs:enumeration value="DepartureDate" />
+      <xs:enumeration value="BookingDate" />
+      <xs:enumeration value="IssuanceDate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ExtendedDateTimeType">
+    <xs:annotation>
+      <xs:documentation>This type is used to specify a Date(with or without offset) expressed in a standard format in addition to the name of an associated event.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="dateTime" type="ota_2011A:DateOrTimeOrDateTimeType" use="optional" />
+    <xs:attribute name="name" type="AlphabeticDateType" use="optional" />
+    <xs:attribute name="offset" type="xs:duration" use="optional" />
+  </xs:complexType>
+  <xs:simpleType name="RestrictedCategoryType">
+    <xs:annotation>
+      <xs:documentation>This type specifies what is the category of the rule. For products other than Air Travel, e.g.: Refund.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Refund" />
+      <xs:enumeration value="Cancellation" />
+      <xs:enumeration value="Reissue" />
+      <xs:enumeration value="Revalidation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RestrictedSubCategoryType">
+    <xs:annotation>
+      <xs:documentation>Within a given category(e.g. refund), this type is used to tell the context to which the rule refers to, e.g.: NoShowInFirstFlight.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoShowInFirstFlight" />
+      <xs:enumeration value="NoShowInSubsequentFlight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DescriptionType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Textual information to provide description and/or additional information.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="language" type="xs:language" use="optional">
+          <xs:annotation>
+            <xs:documentation>Language identification.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="ota_2011A:AlphaNumericStringLength1to3" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+

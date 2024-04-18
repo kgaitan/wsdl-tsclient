@@ -1,0 +1,294 @@
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+targetNamespace= "http://xml.amadeus.com/FFAREQ_04_1_1A" 
+xmlns="http://xml.amadeus.com/FFAREQ_04_1_1A" 
+elementFormDefault="qualified">
+
+  <xs:element name="PNR_AddFrequentFlyer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pnrInfo" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="reservation">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="controlNumber">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="en">
+                              Edifact representation: an..6
+                            </xs:documentation>
+                          </xs:annotation>
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="6"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fqtvGroup" minOccurs="0" maxOccurs="99">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:sequence>
+                <xs:element name="fqtvData">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="actionRequest">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">
+                                Edifact representation: an..3
+                              </xs:documentation>
+                            </xs:annotation>
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="3"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="companyDetails">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="marketingCompany">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">
+                                      Edifact representation: an..3
+                                    </xs:documentation>
+                                  </xs:annotation>
+                                  <xs:minLength value="1"/>
+                                  <xs:maxLength value="3"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="operatingCompany" minOccurs="0">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">
+                                      Edifact representation: an..3
+                                    </xs:documentation>
+                                  </xs:annotation>
+                                  <xs:minLength value="1"/>
+                                  <xs:maxLength value="3"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="accountDetails">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="frequentTravellerId">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">
+                                      Edifact representation: an..27
+                                    </xs:documentation>
+                                  </xs:annotation>
+                                  <xs:minLength value="1"/>
+                                  <xs:maxLength value="27"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="accountHolderDetails" minOccurs="0">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="givenName">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">
+                                      Edifact representation: an..56
+                                    </xs:documentation>
+                                  </xs:annotation>
+                                  <xs:minLength value="1"/>
+                                  <xs:maxLength value="56"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="paxInfoGroup" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paxInfo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="paxDetails">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="surname">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="en">
+                                    Edifact representation: an..70
+                                  </xs:documentation>
+                                </xs:annotation>
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="70"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="otherPaxDetails">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="givenName">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="en">
+                                    Edifact representation: an..56
+                                  </xs:documentation>
+                                </xs:annotation>
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="56"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="uniqueCustomerIdentifier">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:decimal">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="en">
+                                    Edifact representation: n..5
+                                  </xs:documentation>
+                                </xs:annotation>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="fqtvGroup" minOccurs="0" maxOccurs="99">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:sequence>
+                      <xs:element name="fqtvData">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="actionRequest">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">
+                                      Edifact representation: an..3
+                                    </xs:documentation>
+                                  </xs:annotation>
+                                  <xs:minLength value="1"/>
+                                  <xs:maxLength value="3"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="companyDetails">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="marketingCompany">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">
+                                            Edifact representation: an..3
+                                          </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="3"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="operatingCompany" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">
+                                            Edifact representation: an..3
+                                          </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="3"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="accountDetails">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="frequentTravellerId">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">
+                                            Edifact representation: an..27
+                                          </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="27"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="accountHolderDetails" minOccurs="0">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="givenName">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">
+                                            Edifact representation: an..56
+                                          </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="56"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

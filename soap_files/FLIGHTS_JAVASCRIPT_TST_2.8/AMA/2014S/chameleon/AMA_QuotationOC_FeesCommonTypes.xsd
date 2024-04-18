@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qt="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" version="1.002" id="AMA2014S">
+  <xs:include schemaLocation="AMA_QuotationElementCommonTypes.xsd" />
+  <!--*******************************************************************-->
+  <!-- Declaration of QtOCFees type that includes the real data (group) -->
+  <!--*******************************************************************-->
+  <xs:complexType name="QtOCFeesType">
+    <xs:annotation>
+      <xs:documentation>This is the Quotation OC Fee Type declaration. It is used to store information related to OC fees.  It includes, like all others quotations types, Quotation Element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QtElementType">
+        <xs:sequence>
+          <xs:element name="PricingInfo" type="PricingInfoType" minOccurs="0" maxOccurs="2" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--*******************************************************************-->
+  <!--    Uncomment this to be able to use auto-instance generation tools-->
+  <xs:element name="QtOCFees" type="QtOCFeesType" />
+</xs:schema>
+

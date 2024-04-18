@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created with WSDLGenerator 2.0.0 by Amadeus SAS-->
+<!--  Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2015 - Amadeus s.a.s - All Rights Reserved.  -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:amasec="http://xml.amadeus.com/2010/06/Security_v1" xmlns:awsl="http://wsdl.amadeus.com/2010/06/ws/Link_v1" xmlns:awsse="http://xml.amadeus.com/2010/06/Session_v3" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xml.amadeus.com/ONLY_FLIGHT_PDT_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/ONLY_FLIGHT_PDT_1_0">
+  <wsdl:types>
+    <xs:schema />
+  </wsdl:types>
+  <wsdl:portType name="ONLY_FLIGHT_PDT_1_0_ServicesPT" />
+</wsdl:definitions>
+<!--1F8B0800000000000000734FCD4B2D4A2CC9CCCF5328C9CC4D2D2E49CC2DB05230323032D13530D235345508C9282D2A4E49AC5430B4B03232B532315370F70DD13630B03230E00A0F76F151708798905FA450965A540C3408A85DCF40CF80CB39273335AF4421B1A0202733196C8595822382A3A0E1EBE9A70934C33140212F3137D54AC1DFCF2732DECDC7D3DD2304006FAA0DBC97000000-->

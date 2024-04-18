@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/QuotationTypes_v1" targetNamespace="http://xml.amadeus.com/2010/06/QuotationTypes_v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.004" id="AMA2014S">
+  <xs:include schemaLocation="chameleon/AMA_QuotationComponentCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationElementCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationOC_FeesCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationExtendedTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationItineraryServiceCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationItineraryCouponCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationGenericCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationItineraryCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationCouponCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationServiceComponentCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationItineraryServiceCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationTermsAndConditionsCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationUsedProductCommonTypes.xsd" />
+  <xs:include schemaLocation="chameleon/AMA_QuotationFareComponentCommonTypes.xsd" />
+</xs:schema>
+

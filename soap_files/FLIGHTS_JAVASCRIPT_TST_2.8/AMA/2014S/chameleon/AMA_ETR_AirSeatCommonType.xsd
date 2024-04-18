@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ama="http://xml.amadeus.com/ErrorCodes" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2011A" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.002" id="AMA2014S">
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2011A" schemaLocation="../../../OTA/2011A/OTA_Proxy.xsd" />
+  <xs:include schemaLocation="AMA_ETR_CommonTypes.xsd" />
+  <xs:simpleType name="AirSeatNumberType">
+    <xs:annotation>
+      <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+        <ama:error code="101">INVALID SEAT NUMBER</ama:error>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4" />
+      <xs:pattern value="([0-9])+[a-zA-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AirSeatNumberTypeOrString0">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used in order to validate either a AirSeatNumberType or String0.</xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="AirSeatNumberType String0" />
+  </xs:simpleType>
+  <xs:complexType name="ETR_AirSeatType">
+    <xs:sequence>
+      <xs:element name="seatNbr" type="AirSeatNumberTypeOrString0" minOccurs="0" maxOccurs="9">
+        <xs:annotation>
+          <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+            <ama:error facet="minOccurs" code="31998">MANDATORY SEAT NUMBER MISSING</ama:error>
+            <ama:error facet="maxOccurs" code="32003">9 SEAT NUMBERS MAXIMUM PER AIR EXTENDED CONTENT ARE ALLOWED</ama:error>
+          </xs:appinfo>
+          <xs:documentation xml:lang="en">Seat number, maximum of 9 occurences</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="start" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="locationCode" type="StringLength3orString0" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+                  <ama:error facet="minOccurs" code="31766">MANDATORY DEPARTURE POINT MISSING</ama:error>
+                  <ama:error code="11177">INVALID CITY / AIRPORT IATA CODE</ama:error>
+                </xs:appinfo>
+                <xs:documentation xml:lang="en">Departure Location IATA code</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="end" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="locationCode" type="StringLength3orString0" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+                  <ama:error facet="minOccurs" code="31767">MANDATORY ARRIVAL POINT MISSING</ama:error>
+                  <ama:error code="11177">INVALID CITY / AIRPORT IATA CODE</ama:error>
+                </xs:appinfo>
+                <xs:documentation xml:lang="en">Arrival Location IATA code</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="serviceProvider" minOccurs="0">
+        <xs:complexType>
+          <xs:attribute name="code" type="AlphaNumericStringLength2to3orString0" use="optional">
+            <xs:annotation>
+              <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+                <ama:error code="817">INVALID AIRLINE CODE</ama:error>
+              </xs:appinfo>
+              <xs:documentation>service provider code (airline code)</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creation" minOccurs="0">
+        <xs:complexType>
+          <xs:attribute name="dateTime" type="DateTimeOrString0" use="optional">
+            <xs:annotation>
+              <xs:appinfo source="http://xml.amadeus.com/ErrorCodes">
+                <ama:error code="24806">INVALID DATE</ama:error>
+                <!-- NB: here only the reg expr of ota:DateOrDateTimeType is checked. Full validation of validity date is done on creation BEs -->
+              </xs:appinfo>
+              <xs:documentation xml:lang="en">Creation date time</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="status" type="ETRStatusCodeOrString0" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Status code</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="overrideStatus" type="AlphaNumericStringLength1to2orString0" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Enable to override status code (e.g. for Offers)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>
+
