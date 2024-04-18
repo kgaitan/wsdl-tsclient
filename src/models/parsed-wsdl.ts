@@ -3,25 +3,25 @@ import { Logger } from "../utils/logger";
 
 export type DefinitionProperty =
     | {
-          name: string;
-          sourceName: string;
-          description?: string;
-          kind: "PRIMITIVE";
-          isArray?: boolean;
-          type: string;
-      }
+        name: string;
+        sourceName: string;
+        description?: string;
+        kind: "PRIMITIVE";
+        isArray?: boolean;
+        type: string;
+    }
     | {
-          name: string;
-          sourceName: string;
-          description?: string;
-          /**
-           * This definition only reference another definition instead of primitive type
-           * @description helps to avoid circular referencies
-           */
-          kind: "REFERENCE";
-          isArray?: boolean;
-          ref: Definition;
-      };
+        name: string;
+        sourceName: string;
+        description?: string;
+        /**
+         * This definition only reference another definition instead of primitive type
+         * @description helps to avoid circular referencies
+         */
+        kind: "REFERENCE";
+        isArray?: boolean;
+        ref: Definition;
+    };
 
 export interface Definition {
     /** Will be used as name of generated Definition's interface */
@@ -129,15 +129,13 @@ export class ParsedWsdl {
      * If definition with same name exists, suffix it with incremented number
      * @throws Will throw an error when suffixed number exceed `maxStack`
      */
-    findNonCollisionDefinitionName(defName: string): string {
+    findNonCollisionDefinitionName(defName: string, properties: string[]): string {
         const definitionName = sanitizeFilename(defName);
         const isInSensitive = this._options.caseInsensitiveNames;
 
         const defNameToCheck = isInSensitive
             ? `${this._options.modelNamePreffix}${definitionName}${this._options.modelNameSuffix}`.toLowerCase()
             : `${this._options.modelNamePreffix}${definitionName}${this._options.modelNameSuffix}`;
-
-        console.log(this.definitions);
 
         if (
             !this.definitions.find((def) =>
@@ -146,6 +144,22 @@ export class ParsedWsdl {
         ) {
             // console.log('No collision');
             return definitionName;
+        }
+
+        // Check definitions with the same props
+        const existingDefinition = this.definitions.find((def) => {
+            const isSameName = isInSensitive ? def.name.toLowerCase() === defNameToCheck : def.name === defNameToCheck;
+
+            const isSameProps =
+                properties.length === def.properties.length &&
+                properties.every((prop, i) => {
+                    return def.properties[i].name.toLowerCase() === prop.toLowerCase();
+                });
+            return isSameName && isSameProps;
+        });
+
+        if (existingDefinition) {
+            return existingDefinition.name;
         }
 
         for (let i = 1; i < this._options.maxStack; i++) {

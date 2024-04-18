@@ -67,7 +67,7 @@ function parseDefinition(
 
     let nonCollisionDefName: string;
     try {
-        nonCollisionDefName = parsedWsdl.findNonCollisionDefinitionName(defName);
+        nonCollisionDefName = parsedWsdl.findNonCollisionDefinitionName(defName, Object.keys(defParts));
     } catch (err) {
         const e = new Error(`Error for finding non-collision definition name for ${stack.join(".")}.${name}`);
         e.stack.split("\n").slice(0, 2).join("\n") + "\n" + err.stack;
