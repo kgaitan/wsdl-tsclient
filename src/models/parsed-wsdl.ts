@@ -155,7 +155,7 @@ export class ParsedWsdl {
                 properties.every((prop, i) => {
                     return def.properties[i].name.toLowerCase() === prop.toLowerCase();
                 });
-            return isSameName && isSameProps;
+            return isSameName && (isSameProps || def.properties.length === 0);
         });
 
         if (existingDefinition) {

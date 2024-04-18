@@ -27,7 +27,7 @@ type VisitedDefinition = {
     definition: Definition;
 };
 
-function findReferenceDefiniton(visited: Array<VisitedDefinition>, definitionParts: object) {
+function findReferenceDefinition(visited: Array<VisitedDefinition>, definitionParts: object) {
     return visited.find((def) => def.parts === definitionParts);
 }
 const NODE_SOAP_PARSED_TYPES: { [type: string]: string } = {
@@ -84,7 +84,7 @@ function parseDefinition(
     };
 
     parsedWsdl.definitions.push(definition); // Must be here to avoid name collision with `findNonCollisionDefinitionName` if sub-definition has same name
-    visitedDefs.push({ name: definition.name, parts: defParts, definition }); // NOTE: cache reference to this defintion globally (for avoiding circular references)
+    visitedDefs.push({ name: definition.name, parts: defParts, definition }); // NOTE: cache reference to this definition globally (for avoiding circular references)
     if (defParts) {
         // NOTE: `node-soap` has sometimes problem with parsing wsdl files, it includes `defParts.undefined = undefined`
         if ("undefined" in defParts && defParts.undefined === undefined) {
@@ -127,7 +127,7 @@ function parseDefinition(
                         Logger.warn(`Cannot parse ComplexType '${stack.join(".")}.${name}' - using 'any' type`);
                     } else {
                         // With sub-type
-                        const visited = findReferenceDefiniton(visitedDefs, type);
+                        const visited = findReferenceDefinition(visitedDefs, type);
                         if (visited) {
                             // By referencing already declared definition, we will avoid circular references
                             definition.properties.push({
@@ -187,7 +187,7 @@ function parseDefinition(
                         Logger.warn(`Cannot parse ComplexType '${stack.join(".")}.${name}' - using 'any' type`);
                     } else {
                         // With sub-type
-                        const reference = findReferenceDefiniton(visitedDefs, type);
+                        const reference = findReferenceDefinition(visitedDefs, type);
                         if (reference) {
                             // By referencing already declared definition, we will avoid circular references
                             definition.properties.push({
